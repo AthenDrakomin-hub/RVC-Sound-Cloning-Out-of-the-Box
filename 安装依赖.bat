@@ -27,46 +27,46 @@ echo.
 
 :: 升级pip
 echo 1. 升级pip...
-python -m pip install --upgrade pip
+python-3.10\python.exe -m pip install --upgrade pip
 if %errorlevel% neq 0 (
     echo    ❌ pip升级失败
     echo    尝试使用备用方法...
-    python -m ensurepip --upgrade
+    python-3.10\python.exe -m ensurepip --upgrade
 )
 echo.
 
 :: 安装torch和相关库
 echo 2. 安装PyTorch相关库...
-pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu117
+python-3.10\python.exe -m pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu117
 if %errorlevel% neq 0 (
     echo    ⚠ CUDA版本安装失败，尝试CPU版本...
-    pip install torch==1.13.1+cpu torchvision==0.14.1+cpu torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cpu
+    python-3.10\python.exe -m pip install torch==1.13.1+cpu torchvision==0.14.1+cpu torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cpu
 )
 echo.
 
 :: 安装音频处理库
 echo 3. 安装音频处理库...
-pip install librosa soundfile scipy resampy
+python-3.10\python.exe -m pip install librosa soundfile scipy resampy
 echo.
 
 :: 安装机器学习和科学计算库
 echo 4. 安装机器学习和科学计算库...
-pip install numpy==1.23.5 faiss-cpu==1.7.2 praat-parselmouth pyworld torchcrepe
+python-3.10\python.exe -m pip install numpy==1.23.5 faiss-cpu==1.7.2 praat-parselmouth pyworld torchcrepe
 echo.
 
 :: 安装Web界面库
 echo 5. 安装Web界面库...
-pip install gradio==3.36.0
+python-3.10\python.exe -m pip install gradio==3.36.0
 echo.
 
 :: 安装其他依赖
 echo 6. 安装其他依赖库...
-pip install tqdm ffmpeg-python pedalboard
+python-3.10\python.exe -m pip install tqdm ffmpeg-python pedalboard
 echo.
 
 :: 安装RVC特定依赖
 echo 7. 安装RVC特定依赖...
-pip install -r requirements.txt
+python-3.10\python.exe -m pip install -r requirements.txt
 echo.
 
 echo ==================================================
@@ -82,7 +82,7 @@ set CORE_DEPS=torch librosa numpy scipy soundfile gradio faiss-cpu
 set INSTALL_SUCCESS=1
 
 for %%d in (%CORE_DEPS%) do (
-    python -c "import %%d" >nul 2>&1
+    python-3.10\python.exe -c "import %%d" >nul 2>&1
     if !errorlevel! == 0 (
         echo    ✓ %%d 安装成功
     ) else (
