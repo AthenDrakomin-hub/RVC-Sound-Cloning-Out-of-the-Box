@@ -236,3 +236,7 @@ configs/inuse/
 # System files
 .DS_Store
 desktop.ini
+
+# Additional ignores for releases and pip installer
+releases/
+get-pip.py
